@@ -5,7 +5,14 @@ const Button = (props) => (
     <button onClick={props.handleClick}>
       {props.text}
     </button>
-  )
+)
+
+const SubmitButton = (props) => (
+    <button onSubmit={props.submitting}>
+      {props.text}
+    </button>
+)
+
 const Statistics = (props) => {
     if(props.good === 0 && props.neutral === 0 && props.bad === 0) {
         return (
@@ -18,15 +25,23 @@ const Statistics = (props) => {
         return (
             <div>
                 <h1>statistics</h1>
-                <p>good: {props.good}</p>
-                <p>neutral: {props.neutral}</p>
-                <p>bad: {props.bad}</p>
-                <p>all: {props.all}</p>
-                <p>average: {props.average}</p>
-                <p>positive: {props.positive} %</p>
+                <Statistic text='good' value={props.good} />
+                <Statistic text='neutral' value={props.neutral} />
+                <Statistic text='bad' value={props.bad} />
+                <Statistic text='all' value={props.all} />
+                <Statistic text='average' value={props.average} />
+                <Statistic text='positive' value={props.positive} />
             </div>
         );
     }
+}
+
+const Statistic = (props) => {
+    return (
+        <div>
+            <p>{props.text}: {props.value}</p>
+        </div>
+    );
 }
 
 const App = () => {
@@ -51,6 +66,7 @@ const App = () => {
             all={all}
             average={average}
             positive={positive} />
+        <SubmitButton submitting={() => console.log('Submitted!')} text={'SUBMIT'} />
     </div>
   )
 }
