@@ -6,11 +6,12 @@ const Button = (props) => {
         <button onClick={props.btnClick}>next anecdote</button>
     )
 }
-const VoteButton = (props) => {
+const VoteButton = props => {
     return (
         <button onClick={props.btnVote}>vote</button>
     )
 }
+
 const App = (props) => {
   const [selected, setSelected] = useState(0)
   const [votes, setVotes] = useState(new Array(6).fill(0))
@@ -24,13 +25,20 @@ const App = (props) => {
         setVotes(copy);
   };
 
+  const mostVoted = votes => {
+      return votes.indexOf(Math.max(...votes));
+  }
+
   return (
     <div>
+      <h1>Anecdote of the day</h1>
       {props.anecdotes[selected]}
       <p>has {votes[selected]} votes</p>
       <br />
       <VoteButton btnVote={() => voteClick(selected)} />
       <Button btnClick={buttonClick } />
+      <h1>Anecdote with most votes</h1>
+      <p>{props.anecdotes[mostVoted(votes)]}</p>
     </div>
   )
 }
