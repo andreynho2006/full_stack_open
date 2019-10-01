@@ -1,17 +1,13 @@
 import React from 'react';
 
-let sum = 0;
-
 const Total = ({course}) => {
 
-    course.parts.forEach(element => {
-        sum += element.exercises;
-        return sum;
-    });
+    const total = course.parts.reduce((sum, p ) => {
+        return sum += p.exercises
+    }, 0 )
 
-    console.log(sum);
     return (
-        <p><strong>total of: {sum} exercises</strong></p>
+        <p><strong>total of: {total} exercises</strong></p>
     )
 }
 
