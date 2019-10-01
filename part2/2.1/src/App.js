@@ -4,12 +4,19 @@ import Content from './components/Content';
 import Total from './components/Total';
 
 const App = ({ course }) => {
+    const courses = course.map(curs => (
+        <div key={curs.id}>
+            <Header course={curs} />
+            <Content course={curs} />
+            <Total course={curs} />
+        </div>
+        ),
+    );
+
     return (
-      <div>
-        <Header course={course} />
-        <Content course={course} />
-        <Total course={course} />
-      </div>
+        <div>
+            {courses}
+        </div>
     )
   }
 
